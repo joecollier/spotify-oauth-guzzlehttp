@@ -1,0 +1,37 @@
+
+{
+    "name": "Datand/Spotify-Client",
+    "description": "Spotify Client Backend",
+    "require": {
+        "php": ">=5.7.0",
+        "league/oauth2-server": "~1.4"
+    },
+    "require-dev": {
+        "kahlan/kahlan": "^2.5.8",
+        "phalcon/incubator": "^2.0",
+        "league/factory-muffin": "^2.1",
+        "squizlabs/php_codesniffer": "^2.7"
+    },
+    // "autoload": {
+    //     "psr-4": {
+    //         "W3\\Vivastreet\\Payments\\": "src/"
+    //     }
+    // },
+    "config": {
+        "bin-dir": "bin/",
+        "preferred-install": {
+            // "w3/phoenix/core": "source",
+            // "w3/vivastreet-model": "source",
+            // "vivastreet/omnipay-hipay": "source",
+            "*": "dist"
+        }
+    },
+    // "scripts": {
+    //     "post-install-cmd": [
+    //         "./hooks/install-hooks"
+    //     ],
+    //     "post-update-cmd": [
+    //         "./hooks/install-hooks"
+    //     ]
+    // }
+}
