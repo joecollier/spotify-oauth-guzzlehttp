@@ -1,0 +1,108 @@
+<?php
+namespace Datand\Spotify\Api;
+
+use Audeio\Spotify\Entity;
+use Audeio\Spotify\Hydrator;
+use Zend\Stdlib\Hydrator\Aggregate\AggregateHydrator;
+
+use GuzzleHttp;
+
+class Api
+{
+    private static $base_url = 'https://api.spotify.com';
+    private $guzzleClient;
+    private $access_token;
+
+    public function __construct($options)
+    {
+        $this->setAccessToken($options['access_token']);
+
+        $this->guzzleClient = new GuzzleHttp\Client(
+            [
+                'base_uri' => static::$base_url,
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Authorization' => sprintf('Bearer %s', $this->access_token)
+                ]
+            ]
+        );
+    }
+
+    public function setAccessToken($access_token)
+    {
+        $this->access_token = $access_token;
+    }
+
+    public function getAlbum($album_id)
+    {
+        $response = $this->guzzleClient->get(sprintf('/v1/albums/%s', $album_id));
+
+        $contents = $response->getBody()->getContents();
+        return json_decode($contents, true);
+
+        // $hydrators = new AggregateHydrator();
+        // $hydrators->add(new Hydrator\AlbumHydrator());
+        // $hydrators->add(new Hydrator\ArtistCollectionAwareHydrator());
+        // $hydrators->add(new Hydrator\ImageCollectionAwareHydrator());
+        // $hydrators->add(new Hydrator\PaginatedTrackCollectionAwareHydrator());
+
+        // $contents = (array) $response->getBody()->getContents();
+
+        // $album = $hydrators->hydrate(json_decode($contents[0], true), new Entity\Album());
+    
+        // return $album;
+
+        // return json_decode(json_encode($hydrators->extract($album)), true);
+    }
+
+    public function getAlbums(array $album_ids)
+    {
+        $response = $this->guzzleClient->request('GET', '/v1/albums/', [
+            'query' => ['ids' => implode(',', $album_ids)]
+        ]);
+
+        $contents = $response->getBody()->getContents();
+        return json_decode($contents, true);
+
+        // $hydrators = new AggregateHydrator();
+        // $hydrators->add(new Hydrator\AlbumCollectionHydrator());
+
+        // $contents = (array) $response->getBody()->getContents();
+        // $albums = $hydrators->hydrate(json_decode($contents[0], true), new Entity\AlbumCollection());
+
+        // return $albums;
+
+        // // $albums_arr = [];
+
+        // // foreach ($albums as $index => $album) {
+        // //     $albums_arr[$index] = json_decode(json_encode($hydrators->extract($album)), true);
+        // // }
+
+        // // return $albums_arr;
+    }
+
+    /**
+     * @param string $id
+     * @param int $limit
+     * @param int $offset
+     * @return Entity\TrackPagination
+     */
+    public function getAlbumTracks($album_id, $limit = 50, $offset = 0)
+    {
+        $response = $this->guzzleClient->request('GET', sprintf('/v1/albums/%s/tracks/', $album_id), [
+            'query' => [
+                'limit' => $limit,
+                'offset' => $offset
+            ]
+        ]);
+
+        $contents = $response->getBody()->getContents();
+        return json_decode($contents, true);
+
+        // $hydrators = new AggregateHydrator();
+        // $hydrators->add(new Hydrator\PaginationHydrator());
+        // $hydrators->add(new Hydrator\PaginatedTrackCollectionHydrator());
+
+        // // return $hydrators->extract($hydrators->hydrate(json_decode($contents, true), new Entity\TrackPagination()));
+    }
+}

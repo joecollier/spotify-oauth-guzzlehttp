@@ -1,0 +1,11 @@
+{
+    "credentials": {
+        "client": {
+            "client_secret": "some-client-secret",
+            "client_id": "some-client-id"
+        }
+    },
+    "options": {
+    	"callback_uri": "http://localhost:8080/callback"
+    }
+}

@@ -7,7 +7,12 @@
     "require": {
         "php": ">=5.5",
         "guzzlehttp/guzzle": "6.*",
-        "league/oauth2-server": "~2.0"
+        "league/oauth2-client": "~1.4",
+        "zendframework/zend-filter": "2.*",
+        "zendframework/zend-eventmanager": "2.*",
+        "zendframework/zend-servicemanager": "2.*",
+        "zendframework/zend-stdlib": "2.*",
+        "doctrine/collections": "1.*"
     },
     "require-dev": {
         "kahlan/kahlan": "^2.5.8",
@@ -16,7 +21,9 @@
     },
     "autoload": {
         "psr-4": {
-            "Datand\\Spotify\\": "src/"
+            "Datand\\Spotify\\": "src/",
+            "Datand\\Spotify\\Api\\": "src/Api/",
+            "Audeio\\Spotify\\": "src/"
         }
     },
     "config": {
