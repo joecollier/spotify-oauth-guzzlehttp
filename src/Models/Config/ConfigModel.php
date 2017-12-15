@@ -1,5 +1,4 @@
 <?php
-
 namespace Datand\Spotify\Models\Config;
 
 class ConfigModel
@@ -13,6 +12,21 @@ class ConfigModel
             'callback_uri' => ''
         ]
     ];
+
+    public function getCallbackUri()
+    {
+        return $this->options['callback_uri'];
+    }
+
+    public function getClientSecret()
+    {
+        return $this->credentials['client']['client_secret'];
+    }
+
+    public function getClientId()
+    {
+        return $this->credentials['client']['client_id'];
+    }
 
     protected function setCredentials($credentials = [])
     {
