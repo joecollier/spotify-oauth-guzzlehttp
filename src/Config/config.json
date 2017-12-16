@@ -1,0 +1,11 @@
+{
+    "credentials": {
+        "client": {
+            "client_secret": "e46e737b3500497da843eb9f730badc5",
+            "client_id": "77ad74e91a3f46519c1ac907a564662d"
+        }
+    },
+    "options": {
+    	"callback_uri": "http://localhost:8080/callback"
+    }
+}

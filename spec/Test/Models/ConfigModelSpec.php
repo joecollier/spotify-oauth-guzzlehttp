@@ -25,10 +25,22 @@ describe(ConfigModel::class, function () {
             $this->config = new ConfigModel($this->config_json);
         });
 
-        it("sets credentials based on config json", function () {
+        it('sets credentials based on config json', function () {
             expect($this->config->getClientId())->toEqual($this->client_id);
             expect($this->config->getClientSecret())->toEqual($this->client_secret);
             expect($this->config->getCallbackUri())->toEqual($this->callback_uri);
+        });
+    });
+
+    context('config json is empty or not set', function () {
+        beforeEach(function () {
+            $this->config = new ConfigModel(null);
+        });
+
+        it('sets options to empty strings', function () {
+            expect($this->config->getClientId())->toEqual('');
+            expect($this->config->getClientSecret())->toEqual('');
+            expect($this->config->getCallbackUri())->toEqual('');
         });
     });
 });

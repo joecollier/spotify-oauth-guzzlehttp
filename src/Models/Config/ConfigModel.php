@@ -7,11 +7,10 @@ class ConfigModel
         'client' => [
             'client_id' => '',
             'client_secret' => ''
-        ],
-        'options' => [
-            'callback_uri' => ''
         ]
     ];
+
+    public $options = ['callback_uri' => ''];
 
     public function getCallbackUri()
     {
@@ -54,6 +53,7 @@ class ConfigModel
             $this->setCredentials(json_decode($config_json, true)['credentials']);
             $this->setOptions(json_decode($config_json, true)['options']);
         }
+
         return $this;
     }
 }
