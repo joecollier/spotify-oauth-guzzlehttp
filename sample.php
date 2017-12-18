@@ -19,7 +19,6 @@ class Client
 
     private function getConfigFromJson()
     {
-        $config_file = null;
         if ($config_file = file_get_contents(__DIR__ . self::$config_path)) {}
         else {
             $config_file = file_get_contents(__DIR__ . self::$config_path_sample);
@@ -27,10 +26,6 @@ class Client
 
         return new \Datand\Spotify\Models\Config\ConfigModel($config_file);
     }
-
-    protected $sample_album_ids = ['1NCSGAab77B3uvaT38UWz0','2noRn2Aes5aoNVsU6iWThc'];
-
-    protected $sample_user_ids = ['124787553'];
 
     private function setConfig($config)
     {
@@ -58,17 +53,17 @@ class Client
 
         $this->api = new \Datand\Spotify\Api\Api(['access_token' => $access_token->getToken()]);
 
-        // $album = $this->api->getAlbum($this->sample_album_ids[0]);
+        // $album = $this->api->getAlbum($this->config->sample_album_ids[0]);
         // echo json_encode($album, JSON_PRETTY_PRINT);
 
-        // $albums = $this->api->getAlbums($this->sample_album_ids);
+        // $albums = $this->api->getAlbums($this->config->sample_album_ids);
         // echo json_encode($albums, JSON_PRETTY_PRINT);
 
-        // $album_tracks = $this->api->getAlbumTracks($this->sample_album_ids[0]);
+        // $album_tracks = $this->api->getAlbumTracks($this->config->sample_album_ids[0]);
         // echo json_encode($album_tracks, JSON_PRETTY_PRINT);
 
-        // $user_playlists = $this->api->getAlbumTracks($this->sample_album_ids[0]);
-        // echo json_encode($user_playlists, JSON_PRETTY_PRINT);
+        $user_playlists = $this->api->getAlbumTracks($this->config->sample_album_ids[0]);
+        echo json_encode($user_playlists, JSON_PRETTY_PRINT);
     }
 }
 
