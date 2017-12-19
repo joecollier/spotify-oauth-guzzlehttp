@@ -19,7 +19,7 @@ class Api
 
         $this->guzzleClient = new GuzzleHttp\Client(
             [
-                'base_uri' => static::$base_url,
+                 'base_uri' => static::$base_url,
                 'headers' => [
                     'Content-Type' => 'application/json',
                     'Authorization' => sprintf('Bearer %s', $this->access_token)
@@ -75,6 +75,24 @@ class Api
             'query' => [
                 'limit' => $limit,
                 'offset' => $offset
+            ]
+        ]);
+
+        $contents = $response->getBody()->getContents();
+        return json_decode($contents, true);
+    }
+
+    /**
+     * @param string $id
+     * @param int $limit
+     * @param int $offset
+     * @return array
+     */
+    public function getUserPlaylists($user_id, $limit = 3)
+    {
+        $response = $this->guzzleClient->request('GET', sprintf('/v1/users/%s/playlists/', $user_id), [
+            'query' => [
+                'limit' => $limit
             ]
         ]);
 
