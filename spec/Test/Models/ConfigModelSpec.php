@@ -4,7 +4,7 @@ namespace Datand\Spotify\Models\Config;
 describe(ConfigModel::class, function () {
     $this->client_secret = 'some-client-secret';
     $this->client_id = 'some-client-id';
-    $this->callback_uri = 'http://localhost:8080/callback';
+    $this->callback_uri = 'http://localhost:3000/callback';
 
     $this->config_json = json_encode(
         [

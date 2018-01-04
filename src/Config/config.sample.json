@@ -6,6 +6,11 @@
         }
     },
     "options": {
-    	"callback_uri": "http://localhost:8080/callback"
+        "callback_uri": "http://localhost:3000/callback"
+    },
+    "sample_values": {
+        "sample_user_ids": ["124787553"],
+        "sample_album_ids": ["1NCSGAab77B3uvaT38UWz0","2noRn2Aes5aoNVsU6iWThc"],
+        "sample_playlist_ids": ["2flYnfyiAtddaTrT01wWAS"]
     }
 }
