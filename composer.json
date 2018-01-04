@@ -1,6 +1,6 @@
 
 {
-    "name": "datand/spotify-web-api",
+    "name": "joecollier/spotify-oauth-guzzlehttp",
     "description": "PHP library for the Spotify Web API",
     "license": "MIT",
     "prefer-stable": true,
